@@ -43,7 +43,7 @@ const AddProjectForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-24">
+    <form onSubmit={handleSubmit} className="mt-28">
       <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Project Name" required />
       <input type="text" name="owner" value={formData.owner} onChange={handleChange} placeholder="Owner" required />
       <input type="text" name="work_done" value={formData.work_done} onChange={handleChange} placeholder="Work Done" required />
