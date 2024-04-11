@@ -26,7 +26,7 @@ const HeroSection = () => {
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
         <h1 className="text-5xl font-bold leading-tight mb-4">Welcome to Swaraj Studio</h1>
-        <p className="text-lg text-gray-300 mb-8">Crafting Spaces, Inspiring Lives Your Journey to Exceptional Interiors Begins Here with Swaraj Studio.</p>
+        <p className="text-lg text-gray-300 mb-8">Make Your Dream Home A Reality Here with Swaraj Studio.</p>
       </div>
     </div>
 

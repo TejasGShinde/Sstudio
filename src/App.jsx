@@ -47,8 +47,8 @@
 // }
 
 // export default App;
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route ,Navigate} from "react-router-dom";
 
 import Navbar from "./Navbar";
 import About from "./About";
@@ -60,12 +60,14 @@ import HeroSection from "./Hero";
 import PopupImage from "./PopupImage";
 import Projects from "./Projects";
 import ProjectDetails from "./ProjectDetails";
-
+import AdminLogin from "./AdminLogin";
+ 
 
 // Added a Home component for the root path
 import Home from "./Home"; // Assuming you have a Home component
 import AddProjectForm from "./AddProject";
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
   return (
     <Router>
       <Navbar />
@@ -77,12 +79,23 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} /> {/* Route for Portfolio */}
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/addproject" element={<AddProjectForm />} />
+        {/* <Route path="/addproject" element={<AddProjectForm />} /> */}
         {/* Define Routes for Project Pages */}
+        <Route path="/AdminLogin" element={<AdminLogin setIsAuthenticated={setIsAuthenticated} />} />
+        {isAuthenticated ? (
+          <Route path="/addproject" element={<AddProjectForm />} />
+        ) : (
+          <Route path="/addproject" element={<Navigate to="/AdminLogin" replace />} />
+        )}
+        {/* <ProtectedRoute
+          path="/addproject"
+          element={<AddProjectForm />}
+          isAuthenticated={isAuthenticated}
+        /> */}
         <Route path="/all-projects" element={<Projects />} />
         <Route path="/projects/:projectId" element={<ProjectDetails />} />
       </Routes>
-
+     
       <Footer />
     </Router>
   );

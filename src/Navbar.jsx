@@ -215,7 +215,15 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            
+          </li>
+          <li>
+            <Link
+              to="/adminLogin"
+              className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
+              style={{ color: "#ED2647" }}
+            >
+              Admin
+            </Link>
           </li>
         </ul>
       </div>
