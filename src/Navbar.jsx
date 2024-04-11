@@ -173,7 +173,7 @@ const Navbar = () => {
         >
           <li>
             <Link
-              to="/"
+              to=""
               className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
               style={{ color: "#ED2647" }}
             >
