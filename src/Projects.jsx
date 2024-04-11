@@ -34,6 +34,9 @@ const Projects = () => {
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{project.name}</h3>
                 <p className="text-gray-700">{project.owner}</p>
+                <Link to={`/projects/${project.name}`} className="block text-pink-600 hover:underline mt-4">
+                  See Details
+                </Link>
               </div>
             </Link>
           </li>
