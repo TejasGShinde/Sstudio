@@ -71,15 +71,15 @@ const ProjectDetails = () => {
     return (
         <section className="project-details">
 
-            <h1 class="text-center bg-gray-200 mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white mt-24">See Our Work Done  <span class="text-pink-600 dark:text-pink-500 mt-28">In {owner} House</span> </h1>
+            <h1 class="text-center bg-grey-200 mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white mt-24">See Our Work Done  <span class="text-pink-600 dark:text-pink-500 mt-28">In {owner} House</span> </h1>
             <p class="text-center text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">This Work is Done with Passion and Vision</p>
 
             {/* <h1 className="text-3xl font-bold mt-20">{name}</h1> 
             <h2 className="text-xl font-semibold">Project Owner: {owner}</h2>  
             <p className="mt-2">{work_done}</p>   */}
-            <div className="grid grid-cols-2 gap-4 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8 ">
                 {images.map((image, index) => (
-                    <div key={index} className="aspect-w-16 aspect-h-9">
+                    <div key={index} className="aspect-w-16 aspect-h-9 transform transition-transform hover:scale-105">
                         <img src={image} alt={`${name} Image ${index + 1}`} className="object-cover w-full h-full" />
                     </div>
                 ))}

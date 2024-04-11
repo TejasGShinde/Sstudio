@@ -77,10 +77,10 @@ const Portfolio = () => {
     <section className="py-16">
       <div className="container mx-auto px-4 mt-8">
         <h2 className="text-4xl font-bold mb-8 text-center">Our Featured Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
           {/* Render last 3 projects */}
           {projects.map((project) => (
-            <div key={project.name} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div key={project.name} className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105">
               <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-4">{project.name}</h3>
