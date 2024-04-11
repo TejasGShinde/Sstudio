@@ -64,7 +64,7 @@ import ProjectDetails from "./ProjectDetails";
 
 // Added a Home component for the root path
 import Home from "./Home"; // Assuming you have a Home component
-
+import AddProjectForm from "./AddProject";
 function App() {
   return (
     <Router>
@@ -77,7 +77,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} /> {/* Route for Portfolio */}
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
-
+        <Route path="/addproject" element={<AddProjectForm />} />
         {/* Define Routes for Project Pages */}
         <Route path="/all-projects" element={<Projects />} />
         <Route path="/projects/:projectId" element={<ProjectDetails />} />
