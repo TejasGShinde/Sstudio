@@ -14,10 +14,10 @@ const Contact = () => {
             </h1>
           </div>
           <div className="flex justify-center items-center">
-          <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed dark:text-gray-400">
-            Ready to elevate your space? Reach out to us to start the journey to
-            exceptional design.
-          </p>
+            <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed dark:text-gray-400">
+              Ready to elevate your space? Reach out to us to start the journey
+              to exceptional design.
+            </p>
           </div>
         </div>
         <div className="mx-auto w-full max-w-sm space-y-2">
