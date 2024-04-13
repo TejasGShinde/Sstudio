@@ -19,7 +19,7 @@ const About = () => {
     }, []);
   return (
     <>
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800" id="about">
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800 mt-8" id="about">
       <div className="container grid items-center gap-6 px-4 text-center md:px-6 lg:grid-cols-2 lg:gap-10">
         <img
           alt={`Hero ${currentImage}`}

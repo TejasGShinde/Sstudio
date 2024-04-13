@@ -56,8 +56,6 @@ import Portfolio from "./Portfolio";
 import Services from "./Services";
 import Contact from "./Contact";
 import Footer from "./Footer";
-import HeroSection from "./Hero";
-import PopupImage from "./PopupImage";
 import Projects from "./Projects";
 import ProjectDetails from "./ProjectDetails";
 import AdminLogin from "./AdminLogin";
@@ -71,7 +69,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      {/* <HeroSection /> */}
+       
 
       <Routes>
         <Route path="/" element={<Home />} /> {/* Route for the Home component */}
@@ -87,11 +85,7 @@ function App() {
         ) : (
           <Route path="/addproject" element={<Navigate to="/AdminLogin" replace />} />
         )}
-        {/* <ProtectedRoute
-          path="/addproject"
-          element={<AddProjectForm />}
-          isAuthenticated={isAuthenticated}
-        /> */}
+         
         <Route path="/all-projects" element={<Projects />} />
         <Route path="/projects/:projectId" element={<ProjectDetails />} />
       </Routes>

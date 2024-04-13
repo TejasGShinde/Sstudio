@@ -25,11 +25,14 @@ const HeroSection = () => {
       </div>
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
-        <h1 className="text-5xl font-bold leading-tight mb-4">Welcome to Swaraj Studio</h1>
+        <h1 className="text-5xl font-bold leading-tight mb-4 ">Welcome to Swaraj Studio</h1>
         <p className="text-lg text-gray-300 mb-8">Make Your Dream Home A Reality Here with Swaraj Studio.</p>
       </div>
     </div>
+ );
+};
 
+export default HeroSection;
     // older by Tejas.
     
     // <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
@@ -45,10 +48,7 @@ const HeroSection = () => {
     //   </div>
     // </div>
     
-  );
-};
-
-export default HeroSection;
+ 
 
 
 // import React from "react";
