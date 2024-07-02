@@ -18,7 +18,7 @@ const Footer = () => {
               Terms & Conditions
             </a>
             <a href="tel:+1234567890" className="text-xs hover:underline hover:text-pink-100">
-              +1 (234) 567-890
+               +91 7588847277
             </a>
             <a href="mailto:info@swarajstudio.com" className="text-xs hover:underline hover:text-pink-100">
               <IoMdMail />
@@ -29,7 +29,7 @@ const Footer = () => {
             <a href="#" className="text-xs hover:underline hover:text-pink-100">
               <FaTwitter />
             </a>
-            <a href="#" className="text-xs hover:underline hover:text-pink-100">
+            <a href="https://www.instagram.com/swarajstudiosocial/?hl=en" className="text-xs hover:underline hover:text-pink-100">
               <FaInstagram />
             </a>
           </nav>

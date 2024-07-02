@@ -1,13 +1,12 @@
-import React from 'react'
-import image from './assets/profilei.png'
- 
+import React from 'react';
+import image from './assets/profilei.png';
 
 const Team = () => {
     const people = [
         {
             name: 'R V JADHAV',
             role: 'Founder, SDE CIVIL, BSNL',
-            imageUrl:  image,
+            imageUrl: image,
         },
         {
             name: 'SWARAJ JADHAV',
@@ -28,37 +27,35 @@ const Team = () => {
             name: 'SHWETA GOSAVI',
             role: 'Interior Designer',
             imageUrl: image,
-        }
+        },
     ];
 
-
     return (
-        <div className="bg-white py-24 sm:py-32">
-            <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-                <div className="max-w-2xl">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Interior Designer’s Profile
-                    </h2>
-                    <p className="mt-6 text-lg leading-8 text-gray-600">
-                        Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper
-                        suspendisse.
+        <div className="bg-gradient-to-r from-gray-100 to-gray-300 dark:from-gray-800 dark:to-gray-600 py-24 sm:py-32">
+            <div className="container mx-auto px-6 lg:px-8">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-extrabold text-pink-600 sm:text-5xl">Interior Designer’s Profile</h2>
+                    <p className="mt-4 text-lg leading-8 text-gray-700 dark:text-gray-300">
+                        Meet our talented team of interior designers who are dedicated to transforming spaces into works of art.
                     </p>
                 </div>
-                <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+                <div className="grid grid-cols-1 gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-8">
                     {people.map((person) => (
-                        <li key={person.name}>
-                            <div className="flex items-center gap-x-6">
-                                <img className="h-16 w-16 rounded-full" src={person.imageUrl} alt="" />
-                                <div>
-                                    <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">{person.name}</h3>
-                                    <p className="text-sm font-semibold leading-6 text-pink-500">{person.role}</p>
-                                </div>
+                        <div key={person.name} className="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                            <div className="p-6 flex flex-col items-center">
+                                <img className="h-24 w-24 rounded-full mb-4" src={person.imageUrl} alt={person.name} />
+                                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{person.name}</h3>
+                                <p className="text-pink-500 font-medium">{person.role}</p>
+                                <p className="mt-4 text-gray-600 dark:text-gray-300 text-center">
+                                    Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper suspendisse.
+                                </p>
                             </div>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Team
+export default Team;

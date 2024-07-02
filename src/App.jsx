@@ -64,6 +64,7 @@ import AdminLogin from "./AdminLogin";
 // Added a Home component for the root path
 import Home from "./Home"; // Assuming you have a Home component
 import AddProjectForm from "./AddProject";
+import Team from "./Team";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   return (
@@ -77,6 +78,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} /> {/* Route for Portfolio */}
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/team" element={<Team />} />
         {/* <Route path="/addproject" element={<AddProjectForm />} /> */}
         {/* Define Routes for Project Pages */}
         <Route path="/AdminLogin" element={<AdminLogin setIsAuthenticated={setIsAuthenticated} />} />

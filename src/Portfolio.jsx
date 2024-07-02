@@ -51,55 +51,48 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Portfolio = () => {
-  // Define state to store the last 3 added projects
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // Define an async function to fetch the last 3 added projects from the backend
     const fetchProjects = async () => {
       try {
-        // Make a GET request to fetch all projects from the backend
         const response = await axios.get("http://localhost:5000/projects");
-        // Get the last 3 projects from the response data
         const lastThreeProjects = response.data.slice(-3);
-        // Set the last 3 projects in state
         setProjects(lastThreeProjects);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
     };
 
-    // Call the fetchProjects function when the component mounts
     fetchProjects();
-  }, []); // The empty dependency array ensures the effect runs only once on component mount
+  }, []);
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-gradient-to-r from-gray-100 to-gray-300 dark:from-gray-800 dark:to-gray-600">
       <div className="container mx-auto px-4 mt-8">
-        <h2 className="text-4xl font-bold mb-8 text-center">Our Featured Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 ">
-          {/* Render last 3 projects */}
+        <h2 className="text-4xl font-extrabold mb-8 text-center text-gray-800 dark:text-gray-200">Our Featured Projects</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project) => (
-            <div key={project.name} className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105">
+            <div key={project.name} className="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105">
               <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-4">{project.name}</h3>
-                <p className="text-gray-700">{project.owner}</p>
-                <Link to={`/projects/${project.name}`} className="block text-pink-600 hover:underline mt-4">
+                <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">{project.name}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{project.owner}</p>
+                <Link to={`/projects/${project.name}`} className="inline-block mt-4 px-6 py-2 bg-red-600 text-white rounded-md shadow-md hover:bg-pink-700 transition-colors duration-300">
                   See Details
                 </Link>
               </div>
             </div>
           ))}
         </div>
-        {/* See More Button */}
-        <Link to="/all-projects" className="text-pink-600 hover:underline mt-8 block text-center">
-          See More Projects
-        </Link>
+        <div className="text-center mt-8">
+          <Link to="/all-projects" className="inline-block mt-8 px-8 py-3 bg-red-600 text-white rounded-md shadow-md hover:bg-pink-700 transition-colors duration-300">
+            See More Projects
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Portfolio;
-

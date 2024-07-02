@@ -7,32 +7,51 @@ import HeroImage5 from "./5.jpg";
 import HeroImage6 from "./6.jpg";
 
 const HeroSection = () => {
-  const [currentImage, setCurrentImage] = useState(1);
+  const [currentImage, setCurrentImage] = useState(0);
   // Array of image paths
   const images = [HeroImage, HeroImage3, HeroImage4, HeroImage5, HeroImage6];
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage(prevImage => (prevImage === images.length ? 1 : prevImage + 1));
+      setCurrentImage(prevImage => (prevImage === images.length - 1 ? 0 : prevImage + 1));
     }, 4000); 
 
     return () => clearInterval(interval); 
   }, []);
+
   return (
     <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden mt-8">
-      <div className="absolute inset-0">
-        <img src={images[currentImage - 1]} className="w-full h-full object-cover" alt={`Hero ${currentImage}`} />
+      <div className="absolute inset-0 transition-opacity duration-1000">
+        <img src={images[currentImage]} className="w-full h-full object-cover" alt={`Hero ${currentImage + 1}`} />
         <div className="absolute inset-0 bg-black opacity-50"></div>
       </div>
-
-      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
-        <h1 className="text-5xl font-bold leading-tight mb-4 ">Welcome to Swaraj Studio</h1>
-        <p className="text-lg text-gray-300 mb-8">Make Your Dream Home A Reality Here with Swaraj Studio.</p>
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
+        <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-4">
+          Welcome to <span className="text-grey-300">Swaraj Studio</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
+          Make Your Dream Home A Reality Here with Swaraj Studio.
+        </p>
+        <button className="px-8 py-3 bg-pink-700 text-white rounded-md shadow-md hover:bg-pink-600 transition duration-300">
+          Learn More
+        </button>
+      </div>
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <span
+            key={index}
+            className={`block w-3 h-3 rounded-full transition-all duration-300 ${
+              currentImage === index ? 'bg-pink-500' : 'bg-gray-300'
+            }`}
+          ></span>
+        ))}
       </div>
     </div>
  );
 };
 
 export default HeroSection;
+
     // older by Tejas.
     
     // <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">

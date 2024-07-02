@@ -115,12 +115,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./logo2.png";
+import {
+  FaShoppingCart,
+  FaEnvelope,
+  FaCogs,
+  FaAddressCard,
+  FaUserShield,
+  FaUsers // Import FaUsers icon
+} from 'react-icons/fa';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  // Function to close menu and set menuOpen to false
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
@@ -139,7 +152,7 @@ const Navbar = () => {
       "
     >
       <div>
-        <Link to="/">
+        <Link to="/" onClick={closeMenu}> {/* Close menu when clicking logo */}
           <img src={logo} className="h-12" alt=" Logo" />
         </Link>
       </div>
@@ -159,16 +172,14 @@ const Navbar = () => {
         />
       </svg>
       <div
-        className={`w-full md:flex md:items-center md:w-auto ${
-          menuOpen ? "" : "hidden"
-        }`}
+        className={`w-full md:flex md:items-center md:w-auto ${menuOpen ? "" : "hidden"}`}
       >
         <ul
           className="
             pt-4
             text-base
             md:flex
-            md:justify-between 
+            md:justify-center // Center align the links
             md:pt-0"
         >
           <li>
@@ -176,6 +187,7 @@ const Navbar = () => {
               to="/"
               className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
               style={{ color: "#ED2647" }}
+              onClick={closeMenu} // Close menu when Home is clicked
             >
               Home
             </Link>
@@ -185,6 +197,7 @@ const Navbar = () => {
               to="/about"
               className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
               style={{ color: "#ED2647" }}
+              onClick={closeMenu} // Close menu when About is clicked
             >
               About
             </Link>
@@ -194,6 +207,7 @@ const Navbar = () => {
               to="/portfolio"
               className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
               style={{ color: "#ED2647" }}
+              onClick={closeMenu} // Close menu when Projects is clicked
             >
               Projects
             </Link>
@@ -203,32 +217,28 @@ const Navbar = () => {
               to="/services"
               className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
               style={{ color: "#ED2647" }}
+              onClick={closeMenu} // Close menu when Services is clicked
             >
               Services
             </Link>
           </li>
-          <li>
-            <Link
-              to="/contact"
-              className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
-              style={{ color: "#ED2647" }}
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/adminLogin"
-              className="md:p-4 py-2 block hover:text-purple-400 text-red-500"
-              style={{ color: "#ED2647" }}
-            >
-              Admin
-            </Link>
-          </li>
+          
         </ul>
+        <div className="flex items-center ml-auto space-x-4 md:space-x-8 pr-4 pl-4"> {/* ml-auto to move icons to the right */}
+          <Link to="/contact" className="text-pink-700 hover:text-red-600 transition duration-300" onClick={closeMenu}>
+            <FaEnvelope className="h-6 w-6" />
+          </Link>
+          <Link to="/adminLogin" className="text-pink-700 hover:text-red-600 transition duration-300" onClick={closeMenu}>
+            <FaUserShield className="h-6 w-6" />
+          </Link>
+          <Link to="/team" className="text-pink-700 hover:text-red-600 transition duration-300" onClick={closeMenu}>
+            <FaUsers className="h-6 w-6" />
+          </Link>
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
