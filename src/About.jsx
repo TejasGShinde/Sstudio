@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Team from "./Team";
+ 
 import { Link } from 'react-router-dom';
 import HeroImage from "./2.jpg";
 import HeroImage3 from "./3.jpg";
@@ -22,7 +22,7 @@ const About = () => {
   return (
     <>
       <section className="relative w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-800 mt-8" id="about">
-        <div className="container grid items-center gap-6 px-4 text-center md:px-6 lg:grid-cols-2 lg:gap-10">
+        <div className="container grid items-center gap-6 px-4 text-center md:px-6 lg:grid-cols-2 lg:gap-10 relative z-10">
           <div className="relative mx-auto overflow-hidden rounded-xl shadow-lg">
             <img
               alt={`Hero ${currentImage + 1}`}
@@ -52,9 +52,9 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-50 z-0"></div>
       </section>
-       
+      
     </>
   );
 };
