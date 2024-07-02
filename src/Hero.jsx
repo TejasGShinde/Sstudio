@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import HeroImage from "./2.jpg";
 import HeroImage3 from "./3.jpg";
 import HeroImage4 from "./4.jpg";
@@ -32,9 +32,9 @@ const HeroSection = () => {
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl">
           Make Your Dream Home A Reality Here with Swaraj Studio.
         </p>
-        <button className="px-8 py-3 bg-pink-700 text-white rounded-md shadow-md hover:bg-pink-600 transition duration-300">
+        <Link to="/about" className="px-8 py-3 bg-pink-700 text-white rounded-md shadow-md hover:bg-pink-600 transition duration-300">
           Learn More
-        </button>
+        </Link>
       </div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, index) => (
