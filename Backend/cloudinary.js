@@ -1,3 +1,4 @@
+require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
 
 // Configure Cloudinary with your Cloudinary credentials
