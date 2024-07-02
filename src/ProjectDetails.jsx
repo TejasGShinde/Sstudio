@@ -54,7 +54,7 @@ const ProjectDetails = () => {
     useEffect(() => {
         const fetchProjectDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/projects/${projectId}`);
+                const response = await axios.get(`https://sstudio-backend.onrender.com/projects/${projectId}`);
                 setProject(response.data);
             } catch (error) {
                 console.error('Error fetching project details:', error);
