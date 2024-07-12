@@ -4,12 +4,12 @@ import serviceImg from "./2.jpg";
 
 const Services = () => {
     return (
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-700 dark:to-gray-600  " id="services">
+        <section className="w-full mt-16 py-12 md:py-24 lg:py-32 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-700 dark:to-gray-600" id="services">
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <div className="space-y-2">
                         <h2 className="text-4xl font-extrabold tracking-tighter text-gray-800 dark:text-gray-200 sm:text-5xl">Our Services</h2>
-                        <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed dark:text-gray-300">
+                        <p className="max-w-[900px] text-gray-600 md:text-xl dark:text-gray-300">
                             We offer a comprehensive range of services to meet your interior design needs. From concept to execution, we are dedicated to delivering excellence.
                         </p>
                     </div>

@@ -114,7 +114,7 @@
 // export default Navbar;
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "./logo2.png";
+import logo from "./logo4.png";
 import {
   FaShoppingCart,
   FaEnvelope,

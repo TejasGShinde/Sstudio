@@ -65,6 +65,7 @@ import AdminLogin from "./AdminLogin";
 import Home from "./Home"; // Assuming you have a Home component
 import AddProjectForm from "./AddProject";
 import Team from "./Team";
+import Allphotos from "./Allphotos";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false); 
   return (
@@ -79,6 +80,7 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<Team />} />
+        <Route path='/allphoto' element={<Allphotos />} />
         {/* <Route path="/addproject" element={<AddProjectForm />} /> */}
         {/* Define Routes for Project Pages */}
         <Route path="/AdminLogin" element={<AdminLogin setIsAuthenticated={setIsAuthenticated} />} />

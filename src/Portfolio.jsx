@@ -89,7 +89,11 @@ const Portfolio = () => {
           <Link to="/all-projects" className="inline-block mt-8 px-8 py-3 bg-red-600 text-white rounded-md shadow-md hover:bg-pink-700 transition-colors duration-300">
             See More Projects
           </Link>
+          <Link to="/allphoto" className="inline-block ml-8 mt-8 px-4 py-3 bg-red-600 text-white rounded-md shadow-md hover:bg-pink-700 transition-colors duration-300">
+            All Photos
+          </Link>
         </div>
+        
       </div>
     </section>
   );
