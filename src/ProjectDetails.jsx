@@ -1,46 +1,3 @@
-// import React from 'react'
-
-// const ProjectDetails = () => {
-//   return (
-//     <div>ProjectDetails</div>
-//   )
-// }
-
-// export default ProjectDetails
-
-// import React from "react";
-// import { useParams } from "react-router-dom"; // Import useParams hook
-
-// const ProjectDetails = () => {
-//   const { projectId } = useParams(); // Access project ID from URL parameter
-
-//   // Find the corresponding project data based on project ID
-//   const project = projectsData.projects.find(
-//     (project) => project.name === projectId
-//   );
-
-//   if (!project) {
-//     return <div>Project not found!</div>; // Handle case where project ID is not found
-//   }
-
-//   const { name, owner, work_done, images } = project; // Destructure project data
-
-//   return (
-//     <section className="project-details">
-//       <h2>{name}</h2>
-//       <h3>Project Owner: {owner}</h3>
-//       <p>{work_done}</p>
-//       <div className="project-images">
-//         {images.map((image) => (
-//           <img src={image} alt={name} key={image} />
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default ProjectDetails;
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -84,14 +41,16 @@ const ProjectDetails = () => {
         <section className="project-details">
             <div className="container mx-auto px-4 py-8 mt-20">
                 <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white">
-                    See Our Work Done <span className="text-pink-600 dark:text-pink-500">In {owner}'s House</span>
+                    Explore Our Work <span className="text-pink-600 dark:text-pink-500">at {owner}'s Residence</span>
                 </h1>
                 <p className="text-center text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400 mb-8">
-                    This work is done with passion and vision.
+                    A blend of passion, creativity, and precision.
                 </p>
                 <div className="text-center mb-8">
-                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">{name}</h2>
-                    <p className="text-lg font-medium text-gray-700 dark:text-gray-300">{work_done}</p>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 dark:text-white">
+                        {name}
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300">{work_done}</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {images.map((image, index) => (
@@ -103,7 +62,15 @@ const ProjectDetails = () => {
                                 setCurrentIndex(index);
                             }}
                         >
-                            <img src={image} alt={`${name} Image ${index + 1}`} className="object-cover w-full h-full" />
+                            <img
+                                src={image}
+                                alt={`${name} Image ${index + 1}`}
+                                className="object-cover w-full h-full"
+                                loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-white text-lg font-bold">View Image</span>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -129,7 +96,12 @@ const ProjectDetails = () => {
                             >
                                 &#10095;
                             </button>
-                            <img src={selectedImage} alt="Selected" className="max-w-full max-h-screen object-contain" />
+                            <img
+                                src={selectedImage}
+                                alt="Selected"
+                                className="max-w-full max-h-screen object-contain"
+                                loading="lazy"
+                            />
                         </div>
                     </div>
                 )}
@@ -139,9 +111,3 @@ const ProjectDetails = () => {
 };
 
 export default ProjectDetails;
-
-
-
-
-
-

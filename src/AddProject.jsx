@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const apiUrl = 'http://localhost:5000/projects/';
+const apiUrl = 'https://sstudio-backend.onrender.com/projects/';
 
 const AddProjectForm = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +19,7 @@ const AddProjectForm = () => {
 
     const [projects, setProjects] = useState([]);
     const [photos, setPhotos] = useState([]);
+    const [editingProjectId, setEditingProjectId] = useState(null);
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -66,12 +67,24 @@ const AddProjectForm = () => {
             formData.images.forEach((image) => {
                 formDataToSend.append("images", image);
             });
-            await axios.post(apiUrl, formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            toast.success("Project added successfully!");
+
+            if (editingProjectId) {
+                await axios.put(`${apiUrl}updateProject/${editingProjectId}`, formDataToSend, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                toast.success("Project updated successfully!");
+                setEditingProjectId(null);
+            } else {
+                await axios.post(apiUrl, formDataToSend, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                toast.success("Project added successfully!");
+            }
+
             setFormData({
                 name: '',
                 owner: '',
@@ -80,8 +93,8 @@ const AddProjectForm = () => {
             });
             fetchProjects();
         } catch (error) {
-            toast.error("Error adding project!");
-            console.error('Error adding project:', error);
+            toast.error("Error adding/updating project!");
+            console.error('Error adding/updating project:', error);
         }
     };
 
@@ -92,7 +105,7 @@ const AddProjectForm = () => {
             photosData.photos.forEach((photo) => {
                 formDataToSend.append("photos", photo);
             });
-            await axios.post(`${apiUrl}photos`, formDataToSend, {
+            await axios.post(`${apiUrl}addphoto`, formDataToSend, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -119,72 +132,94 @@ const AddProjectForm = () => {
         }
     };
 
+    const handleEdit = (project) => {
+        setFormData({
+            name: project.name,
+            owner: project.owner,
+            work_done: project.work_done,
+            images: [] // Images will be handled separately
+        });
+        setEditingProjectId(project._id);
+    };
+
+    const handleCancelEdit = () => {
+        setFormData({
+            name: '',
+            owner: '',
+            work_done: '',
+            images: []
+        });
+        setEditingProjectId(null);
+    };
+
     return (
-        <div>
+        <div className="container mx-auto p-4">
             <ToastContainer />
-            <form onSubmit={handleSubmitProject} className="mt-28">
-                <div className="grid gap-6 mb-6 md:grid-cols-2">
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-700 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-900 dark:focus:border-blue-900"
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Project Name"
-                        required
-                    />
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text"
-                        name="owner"
-                        value={formData.owner}
-                        onChange={handleChange}
-                        placeholder="Owner"
-                        required
-                    />
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-700 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="text"
-                        name="work_done"
-                        value={formData.work_done}
-                        onChange={handleChange}
-                        placeholder="Work Done"
-                        required
-                    />
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="file"
-                        name="images"
-                        onChange={handleChange}
-                        multiple
-                        accept="image/*"
-                    />
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-pink-700 dark:border-gray-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
-                        type="submit"
-                        value="Add Project"
-                    />
-                </div>
-            </form>
-
-            <form onSubmit={handleSubmitPhotos} className="mt-8">
-                <div className="grid gap-6 mb-6 md:grid-cols-2">
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        type="file"
-                        name="photos"
-                        onChange={handleChange}
-                        multiple
-                        accept="image/*"
-                    />
-                    <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-pink-700 dark:border-gray-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
-                        type="submit"
-                        value="Add Photos"
-                    />
-                </div>
-            </form>
-
+            <section className="max-w-4xl mx-auto px-4 py-8">
+                <h2 className="text-2xl font-bold mb-4">{editingProjectId ? "Edit Project" : "Add a New Project"}</h2>
+                <form onSubmit={handleSubmitProject} className="space-y-4">
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Project Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="owner" className="block text-sm font-medium text-gray-700">Owner</label>
+                        <input
+                            type="text"
+                            name="owner"
+                            id="owner"
+                            value={formData.owner}
+                            onChange={handleChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="work_done" className="block text-sm font-medium text-gray-700">Work Done</label>
+                        <textarea
+                            name="work_done"
+                            id="work_done"
+                            value={formData.work_done}
+                            onChange={handleChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="images" className="block text-sm font-medium text-gray-700">Images</label>
+                        <input
+                            type="file"
+                            name="images"
+                            id="images"
+                            multiple
+                            onChange={handleChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div className="flex justify-between">
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-600"
+                        >
+                            {editingProjectId ? "Update Project" : "Add Project"}
+                        </button>
+                        {editingProjectId && (
+                            <button
+                                type="button"
+                                onClick={handleCancelEdit}
+                                className="bg-gray-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-gray-600"
+                            >
+                                Cancel
+                            </button>
+                        )}
+                    </div>
+                </form>
+            </section>
             <section className="max-w-4xl mx-auto px-4 py-8 mt-20">
                 <h2 className="text-2xl font-bold mb-4">Our Projects</h2>
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -194,27 +229,46 @@ const AddProjectForm = () => {
                             <div className="p-4">
                                 <h3 className="text-xl font-bold mb-2">{project.name}</h3>
                                 <p className="text-gray-700">{project.owner}</p>
-                                <button
-                                    onClick={() => handleDelete(project._id)}
-                                    className="inline-block mt-4 px-4 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-700 transition-colors duration-300 text-center"
-                                >
-                                    Delete Project
-                                </button>
+                                <div className="flex justify-between">
+                                    <button
+                                        onClick={() => handleEdit(project)}
+                                        className="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300 text-center"
+                                    >
+                                        Edit Project
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(project._id)}
+                                        className="inline-block mt-4 px-4 py-2 bg-red-500 text-white rounded-full shadow-md hover:bg-red-700 transition-colors duration-300 text-center"
+                                    >
+                                        Delete Project
+                                    </button>
+                                </div>
                             </div>
                         </li>
                     ))}
                 </ul>
             </section>
-
-            <section className="max-w-4xl mx-auto px-4 py-8 mt-20">
-                <h2 className="text-2xl font-bold mb-4">All Photos</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {photos.map((photo, index) => (
-                        <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105">
-                            <img src={photo.url} alt={`Photo ${index + 1}`} className="w-full h-48 object-cover" />
-                        </div>
-                    ))}
-                </div>
+            <section className="max-w-4xl mx-auto px-4 py-8">
+                <h2 className="text-2xl font-bold mb-4">Add Photos</h2>
+                <form onSubmit={handleSubmitPhotos} className="space-y-4">
+                    <div>
+                        <label htmlFor="photos" className="block text-sm font-medium text-gray-700">Photos</label>
+                        <input
+                            type="file"
+                            name="photos"
+                            id="photos"
+                            multiple
+                            onChange={handleChange}
+                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-600"
+                    >
+                        Add Photos
+                    </button>
+                </form>
             </section>
         </div>
     );

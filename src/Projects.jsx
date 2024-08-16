@@ -19,24 +19,25 @@ const Projects = () => {
   }, []);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-8 mt-20">
-      <h2 className="text-3xl font-extrabold mb-6 text-center text-gray-800 dark:text-gray-200">
-        Our Projects
+    <section className="max-w-7xl mx-auto px-4 py-12 mt-20 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg">
+      <h2 className="text-4xl font-extrabold mb-10 text-center text-gray-800 dark:text-gray-200 tracking-tight">
+        Our Interior Design Projects
       </h2>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <li
             key={project.name}
-            className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
+            className="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl"
           >
             <Link to={`/projects/${project.name}`} className="block">
               <img
                 src={project.images[0]}
                 alt={project.name}
-                className="w-full h-48 object-cover"
+                className="w-full h-64 object-cover rounded-t-xl transition-transform duration-500 hover:scale-110"
+                loading="lazy"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+                <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white transition-colors duration-500 group-hover:text-pink-600">
                   {project.name}
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
@@ -44,7 +45,7 @@ const Projects = () => {
                 </p>
                 <Link
                   to={`/projects/${project.name}`}
-                  className="inline-block w-full px-4 py-2 bg-red-600 text-white font-semibold text-center rounded-md shadow-lg hover:bg-pink-700 transition-colors duration-300"
+                  className="inline-block w-full px-4 py-2 bg-gradient-to-r from-red-600 to-pink-600 text-white font-semibold text-center rounded-full shadow-md transform transition-transform duration-500 hover:scale-110 hover:from-pink-600 hover:to-red-600"
                 >
                   See Details
                 </Link>
